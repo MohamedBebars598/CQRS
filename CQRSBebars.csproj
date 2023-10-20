@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="CommandSender\" />
     <Folder Include="QuryHandler\" />
     <Folder Include="Query\" />
   </ItemGroup>
