@@ -9,7 +9,7 @@ namespace CQRSBebars.CommandSender
 {
     public interface ICommandSender
     {
-        Task<TResult> SendAsync<TCommand,TResult>(TCommand command, CancellationToken cancellationToken = default) where TCommand : class, ICommand;
+        Task<TResult> SendAsync<TCommand, TResult>(TCommand command, CancellationToken cancellationToken) where TCommand : class, ICommand;
 
     }
 }
