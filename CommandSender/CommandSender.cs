@@ -1,4 +1,6 @@
-﻿namespace CQRSBebars.CommandSender
+﻿using CQRSBebars.ComandHandlers;
+
+namespace CQRSBebars.CommandSender
 {
     public class CommandSender : ICommandSender
     {
@@ -14,9 +16,10 @@
         {
             Type commandType = command.GetType();
             Type handlerType = _registeryHandler[commandType];
-            dynamic handler = Activator.CreateInstance(handlerType);
+            var handler = Activator.CreateInstance(handlerType) as ICommandHandler<TCommand,TResult>;
+            if (handler == null)
+                throw new InvalidOperationException($"No handler registered for command type {commandType}");
             return await handler.HandleAsync((dynamic)command, cancellationToken);
-            
         }
     }
 
